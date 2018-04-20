@@ -1,0 +1,24 @@
+CREATE TABLE MAILS (
+    serial_no int not null AUTO_INCREMENT,
+    from_id varchar(50) not null,
+    to_id varchar(50) not null,
+    subject varchar(50) not null,
+    mail_date date not null,
+    mail_time time not null,
+    
+    mail_text varchar(1500) null,
+    
+    PRIMARY KEY (serial_no)
+)
+
+CREATE TABLE folder_contact (
+    user_id varchar(50) not null,
+    folder_name varchar(50) not null,
+    contact_id varchar(50) not null,
+    
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (contact_id) REFERENCES users(user_id),
+    FOREIGN KEY (folder_name) REFERENCES folder(folder_name),
+    
+    CONSTRAINT f_c_tag PRIMARY KEY ( user_id, folder_name, contact_id )
+)
